@@ -16,7 +16,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); color: white; overflow: hidden; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); color: white; overflow-x: hidden; }
 
         /* --- CINEMATIC INTRO --- */
         #intro-overlay {
@@ -33,8 +33,7 @@
 
         .intro-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 10vw, 5rem);
-            letter-spacing: -1px; 
+            font-size: clamp(1.5rem, 8vw, 5rem);
             font-weight: 700;
             text-transform: uppercase;
             opacity: 0;
@@ -52,7 +51,6 @@
         #main-content {
             opacity: 0;
             height: 100vh;
-            overflow-y: auto;
             background: url('buug.jpg') no-repeat center center/cover;
             background-attachment: fixed;
             transition: opacity 2s ease;
@@ -60,92 +58,139 @@
 
         .glass-overlay {
             min-height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 0;
+            background: rgba(0, 0, 0, 1);
+            backdrop-filter: blur(40px);
             display: flex;
             flex-direction: column;
-            align-items: center;
+            transition: background 2s ease, backdrop-filter 2s ease;
         }
 
-        /* --- STICKY NAV --- */
+        /* 100% VISIBLE WITH TOP SHADOW */
+        .glass-overlay.reveal {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 40%);
+            backdrop-filter: blur(0px);
+        }
+
+        /* --- NAVIGATION --- */
         nav {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.3);
-            position: sticky;
-            top: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: 1s ease 1.5s;
             z-index: 1000;
         }
 
-        .logo { font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; }
+        nav.show { opacity: 1; transform: translateY(0); }
 
-        .nav-links { display: flex; list-style: none; gap: 30px; transition: 0.4s ease; }
-        .nav-links a { 
-            color: #ccc; 
-            text-decoration: none; 
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s; 
-        }
-        .nav-links a:hover { 
-            color: white; 
-            text-shadow: 0 0 10px white;
-            text-decoration: underline;
-            text-underline-offset: 8px;
-        }
+        .logo { font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* --- HAMBURGER MENU --- */
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; }
+
+        /* --- MOBILE MENU BUTTON --- */
         .menu-toggle {
             display: none;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
+            z-index: 1001;
         }
-
         .menu-toggle span {
             width: 25px;
-            height: 3px;
+            height: 2px;
             background: white;
-            border-radius: 5px;
             transition: 0.3s;
         }
 
+        /* --- HERO SECTION --- */
         .hero-section {
-            text-align: center;
-            margin-top: 15vh;
-            max-width: 800px;
-            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            position: relative;
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 4rem); letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
-        p { font-size: clamp(1rem, 3vw, 1.2rem); color: #ddd; line-height: 1.6; }
+        .hero-wrapper {
+            width: 100%;
+            max-width: 800px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+        }
 
-        /* --- MOBILE VIEW --- */
+        .hero-wrapper.shift-left {
+            left: 10%;
+            transform: translate(0, -50%);
+            text-align: left;
+        }
+
+        h1 { 
+            font-size: clamp(2.5rem, 12vw, 7rem); 
+            letter-spacing: 10px; 
+            text-transform: uppercase;
+            filter: blur(15px);
+            opacity: 0;
+            transition: all 1.5s ease;
+        }
+
+        .hero-wrapper.shift-left h1 {
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            letter-spacing: 2px;
+            filter: blur(0);
+            opacity: 1;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease 1.8s, transform 1s ease 1.8s;
+        }
+
+        .hero-wrapper.shift-left .hero-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: white; line-height: 1.6; max-width: 500px; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 850px) {
             nav { padding: 20px 5%; }
             .menu-toggle { display: flex; }
 
             .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0; right: -100%;
+                height: 100vh;
+                width: 70%;
                 background: rgba(0, 0, 0, 0.95);
-                padding: 40px 0;
-                text-align: center;
-                gap: 25px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s ease;
+                backdrop-filter: blur(10px);
             }
 
-            .nav-links.active { display: flex; }
+            .nav-links.active { right: 0; }
+
+            .hero-wrapper.shift-left {
+                left: 5%;
+                width: 90%;
+            }
+            
+            /* Rotate hamburger into X when open */
+            .open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .open span:nth-child(2) { opacity: 0; }
+            .open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         }
     </style>
 </head>
@@ -156,14 +201,12 @@
     </div>
 
     <div id="main-content">
-        <div class="glass-overlay">
-            <nav>
+        <div class="glass-overlay" id="overlay-container">
+            <nav id="navbar">
                 <div class="logo">Municipality of Buug</div>
                 
-                <div class="menu-toggle" id="mobile-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span><span></span><span></span>
                 </div>
 
                 <ul class="nav-links" id="nav-list">
@@ -171,50 +214,50 @@
                     <li><a href="officials.html">Officials</a></li>
                     <li><a href="tourism.html">Tourism</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
 
             <div class="hero-section">
-                <h1>Welcome</h1>
-                <p>To the official digital gateway of the Municipality of Buug. Explore our rich culture, meet our leaders, and witness the natural beauty of our town.</p>
+                <div class="hero-wrapper" id="hero-box">
+                    <h1>Welcome</h1>
+                    <div class="hero-content">
+                        <p>To the official digital gateway of the Municipality of Buug. Explore our rich culture, meet our leaders, and witness the natural beauty of our town.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Intro Animation Logic
+        // MOBILE MENU TOGGLE
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+
+        // INTRO ANIMATION LOGIC
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const intro = document.getElementById('intro-overlay');
                 const content = document.getElementById('main-content');
+                const overlay = document.getElementById('overlay-container');
+                const hero = document.getElementById('hero-box');
+                const nav = document.getElementById('navbar');
+
                 intro.style.opacity = '0';
                 content.style.opacity = '1';
-                document.body.style.overflow = 'auto';
+                
+                setTimeout(() => {
+                    overlay.classList.add('reveal'); 
+                    hero.classList.add('shift-left');
+                    nav.classList.add('show');
+                }, 800);
+
                 setTimeout(() => { intro.style.display = 'none'; }, 1500);
             }, 4000); 
-        });
-
-        // TOGGLE MENU LOGIC
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navList = document.getElementById('nav-list');
-
-        mobileToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
-            
-            // Optional: Animation para sa Hamburger icon (magiging X)
-            const spans = mobileToggle.querySelectorAll('span');
-            mobileToggle.classList.toggle('open');
-            
-            if(mobileToggle.classList.contains('open')) {
-                spans[0].style.transform = "rotate(45deg) translate(5px, 6px)";
-                spans[1].style.opacity = "0";
-                spans[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
-            } else {
-                spans[0].style.transform = "none";
-                spans[1].style.opacity = "1";
-                spans[2].style.transform = "none";
-            }
         });
     </script>
 </body>
