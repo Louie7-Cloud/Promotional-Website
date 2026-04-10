@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism - Municipality of Buug</title>
+    <style>
+        /* Base Theme from Screenshot 1 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: white;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
+            background-attachment: fixed;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: bold; letter-spacing: 1px; }
+
+        nav ul { display: flex; list-style: none; gap: 25px; margin: 0; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* News Section (Article at Top) */
+        .news-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #fff;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #ddd;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin: 60px 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Tourist Spot Layout (Like Screenshot 2) */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 100px 20px;
+        }
+
+        .spot-section {
+            display: block;
+            margin-bottom: 80px;
+            overflow: hidden; /* Clears the float */
+        }
+
+        .spot-image {
+            float: right; /* Text wraps around image */
+            width: 45%;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Alternate image side for every second spot */
+        .spot-section:nth-child(even) .spot-image {
+            float: left;
+            margin-left: 0;
+            margin-right: 30px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #fff;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .spot-text b {
+            color: #4facfe;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0,0,0,0.3);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MUNICIPALITY OF BUUG</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="officials.html">Officials</a></li>
+            <li><a href="tourism.html">Tourism</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="news-container">
+        <p><b>BUUG, Zamboanga Sibugay, August 09 (PIA)</b> - The tourism industry is a vital sector that showcases the richness and beauty of towns and cities. Zamboanga Sibugay province is endowed with natural resources, pristine seas, and breathtaking landscapes, paving the way for a thriving tourism industry.</p>
+        
+        <p>To foster its tourism industry, the local government of Buug, through its Tourism Office, is taking steps to highlight the various attractions of their town.</p>
+
+        <p>A recent initiative they undertook involved a benchmarking activity in Misamis Oriental with the goal of gaining insights on how to improve tourism in Buug.</p>
+
+        <div class="quote">
+            "We learned valuable lessons from Misamis Oriental's best practices. They are excellent at how historical sites can be preserved and utilized for tourism while honoring their significance,” Grace E. Halasan, Tourism Officer of Buug said.
+        </div>
+    </div>
+
+    <h1 class="main-title">TOURIST SPOTS IN BUUG</h1>
+
+    <div class="content-wrapper">
+
+        <div class="spot-section">
+            <img src="mace.jpg" alt="Mace Farm" class="spot-image">
+            <div class="spot-text">
+                <h2>MACE FARM</h2>
+                <p>Mace Farm has become a favorite destination in Buug because it offers a rare mix of adventure and relaxation. Known for its cool climate and stunning landscapes, it is the perfect place to see the natural beauty of Zamboanga Sibugay.</p>
+                <p><b>The Famous Sea of Clouds:</b> If you arrive early in the morning, you are treated to a spectacular view of thick white clouds covering the valley below, making the farm feel like a hidden island in the sky.</p>
+                <p><b>Refreshing Mountain Air:</b> Because of its high elevation, the air is always crisp and cool. It is a refreshing break from the heat of the city and the perfect spot to breathe in fresh, clean air.</p>
+                <p><b>Photogenic Scenery:</b> With its rolling green hills, pine trees, and neat wooden structures, every corner of the farm looks like a postcard. It’s a paradise for photographers and anyone looking for a peaceful "Instagrammable" moment.</p>
+                <p><b>A Quiet Escape:</b> It is a place to disconnect from the stress of daily life. Whether you are having a coffee while watching the sunset or walking along the grassy slopes, the farm provides a sense of calm that is hard to find anywhere else.</p>
+            </div>
+        </div>
+
+        <div class="spot-section">
+            <img src="mamas.jpg" alt="Dos Mamas" class="spot-image">
+            <div class="spot-text">
+                <h2>DOS MAMAS MOUNTAIN</h2>
+                <p>Dos Mamas Mountain is one of the most iconic natural landmarks in Buug, Zamboanga Sibugay. It is famous for its twin peaks, which resemble two "mamas" (breasts), giving it its unique name.</p>
+                <p><b>The Beauty of Dos Mamas Mountain:</b> Dos Mamas is a favorite for hikers and nature lovers who want a bit more adventure. It offers a raw, untouched beauty that showcases the rugged side of Zamboanga Sibugay.</p>
+                <p><b>The Twin Peaks Challenge:</b> The mountain is known for its distinct silhouette. Reaching the summit gives hikers a massive sense of accomplishment and a unique vantage point of the surrounding municipalities.</p>
+                <p><b>Breathtaking 360-Degree Views:</b> Once you reach the top, you are rewarded with an overlooking view of the lush valleys of Buug and the distant coastline of Sibugay Bay. On a clear day, the horizon seems endless.</p>
+                <p><b>Diverse Flora and Fauna:</b> The trail to the top is rich with local plant life and wild orchids. It is a great spot for birdwatching and experiencing the biodiversity of the region firsthand.</p>
+                <p><b>A Symbol of Resilience:</b> To the locals, Dos Mamas is more than just a mountain; it is a landmark that represents the strength and natural heritage of the people of Buug.</p>
+            </div>
+        </div>
+
+        <div class="spot-section">
+            <img src="silupa.jpg" alt="Silupadak" class="spot-image">
+            <div class="spot-text">
+                <h2>SILUPADAK</h2>
+                <p>To round out your tourism section, Silupadak is the perfect addition because it offers a different kind of beauty—focusing on water and lush greenery rather than just mountain peaks.</p>
+                <p><b>The Serenity of Silupadak:</b> While Mace Farm and Dos Mamas offer heights, Silupadak offers a cool, refreshing sanctuary hidden within the lush landscape of Buug. It is best known for its crystal-clear waters and its connection to the local ecosystem.</p>
+                <p><b>Natural Spring Waters:</b> Silupadak is famous for its cold, refreshing springs. The water is remarkably clear and flows through natural rock formations, providing a perfect spot for visitors to cool off during a hot day.</p>
+                <p><b>A Hidden Oasis:</b> Surrounded by towering trees and thick tropical foliage, Silupadak feels like a secret garden. The canopy of leaves provides natural shade, making it a peaceful place for picnics and family gatherings.</p>
+                <p><b>The Sound of Nature:</b> Unlike the windy heights of the mountains, the beauty of Silupadak is in its sounds. The gentle trickling of water and the chirping of forest birds create a natural soundtrack that is incredibly relaxing.</p>
+                <p><b>Eco-Tourism Hub:</b> It serves as a reminder of Buug's rich natural resources. Locals and visitors alike appreciate Silupadak as a place where the environment is preserved, allowing people to enjoy nature in its purest form.</p>
+            </div>
+        </div>
+
+        <div class="spot-section">
+            <img src="busay.jpg" alt="Busay Falls" class="spot-image">
+            <div class="spot-text">
+                <h2>BUSAY/FALLS</h2>
+                <p>In Buug, the term Busay (which simply means "waterfall" in the local dialect) usually refers to the stunning hidden falls tucked away in the lush forests. Adding this to your page provides that "adventure" element that every tourism site needs.</p>
+                <p><b>The Majesty of Busay Falls:</b> Busay Falls is the hidden gem of Buug. It is a place of raw power and natural elegance, where the forest opens up to reveal a cascading curtain of water.</p>
+                <p><b>Cascading Beauty:</b> The falls feature multiple tiers of rushing water that crash into a deep, natural basin. The sight of the white foam against the dark river rocks is a photographer's dream.</p>
+                <p><b>The Jungle Trek:</b> Reaching Busay is half the fun. The trail takes you through a vibrant jungle path, crossing small streams and walking under a canopy of ancient trees. It’s a true immersion into the wild.</p>
+                <p><b>The "Natural Spa":</b> The pressure from the falling water provides a natural massage for swimmers, while the mist created by the falls keeps the entire area significantly cooler than the surrounding forest.</p>
+                <p><b>Pristine Environment:</b> Because it is tucked away, Busay remains clean and untouched. It is a sanctuary for those who want to see nature exactly as it was meant to be.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Municipality of Buug. All Rights Reserved | Developed by Mark Louie O. Casing
+    </footer>
+
+</body>
+</html>

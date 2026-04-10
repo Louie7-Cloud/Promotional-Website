@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Municipality of Buug</title>
+    <style>
+        /* Consistent Theme from your Screenshots */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+
+        nav ul { display: flex; list-style: none; gap: 25px; margin: 0; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        /* About Section Layout */
+        .about-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* Town Info Section */
+        .town-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 50px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Developer Card */
+        .dev-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 650px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Profile Photo Styling */
+        .dev-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover; /* Ensures image isn't stretched */
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .dev-card h2 {
+            margin: 10px 0;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .dev-card h4 {
+            color: #4facfe;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .dev-card p {
+            font-size: 1.05rem;
+            color: #eee;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Municipality of Buug</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="officials.html">Officials</a></li>
+            <li><a href="tourism.html">Tourism</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="about-container">
+        <h1>About the Project</h1>
+
+        <div class="town-info">
+            <p>The Municipality of Buug, located in the province of Zamboanga Sibugay, is a land of vibrant culture and immense natural beauty. This website serves as a digital window for locals and tourists alike to explore our history, meet our dedicated leaders, and discover the hidden gems of our town.</p>
+        </div>
+
+        <div class="dev-card">
+            <img src="dev.jpg" alt="Mark Louie O. Casing" class="dev-photo">
+            
+            <h4>Lead Developer</h4>
+            <h2>Mark Louie O. Casing</h2>
+            <p>A highly motivated BSIT graduate from MSU Buug with a strong foundation in web development. Eager to leverage technical skills in front-end and back-end technologies to contribute to innovative digital solutions and grow within a fast-paced development team.</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Municipality of Buug. All Rights Reserved. | Developed by Mark Louie O. Casing
+    </footer>
+
+</body>
+</html>

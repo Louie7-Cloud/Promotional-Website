@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipality of Buug - Officials</title>
+    <style>
+        /* General Styles to match the screenshot */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            min-height: 100vh;
+            /* Gradient background similar to the image */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
+            background-attachment: fixed;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        .logo {
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* Main Content Container */
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Profile Cards Layout */
+        .officials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .priority-row {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 200px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin: 10px 0 5px 0;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: #ddd;
+            font-style: italic;
+        }
+
+        .council-title {
+            width: 100%;
+            margin: 40px 0 20px 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MUNICIPALITY OF BUUG</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="officials.html">Officials</a></li>
+            <li><a href="tourism.html">Tourism</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Municipality of Buug Officials</h1>
+
+        <div class="priority-row">
+            <div class="card">
+                <img src="mayor.jpg" alt="Official Photo">
+                <h3>LAGAS DIONESIA</h3>
+                <p>Mayor</p>
+            </div>
+            <div class="card">
+                <img src="jonam.jpg" alt="Official Photo">
+                <h3>LAGAS JONAM</h3>
+                <p>Vice-Mayor</p>
+            </div>
+        </div>
+
+        <h2 class="council-title">Municipal Councilors</h2>
+
+        <div class="officials-grid">
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>DIMASAGKA ABDULRHADS</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>CHUA WILLIAM</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>GAKO MARVIN JESSIE</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>QUINTERO SHERWIN</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>PADERANGA ALLEN</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>FAMOR KUKU</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>CERBO ROMEO</h3>
+                <p>Councilor</p>
+            </div>
+            <div class="card">
+                <img src="unknown.jpeg" alt="Official Photo">
+                <h3>CURIBA FREIDA</h3>
+                <p>Councilor</p>
+            </div>
+        </div>
+    </div>
+	
+	<footer style="text-align: center; padding: 30px; color: rgba(255,255,255,0.5); font-size: 0.8rem;">
+    &copy; 2026 Municipality of Buug Officials. All Rights Reserved | Developed by Mark Louie O. Casing
+</footer>
+
+</body>
+</html>

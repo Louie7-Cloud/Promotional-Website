@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOUIE'S CODE - Municipality of Buug</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #4facfe;
+            --bg-color: #000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Main page font remains clean sans-serif */
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); color: white; overflow: hidden; }
+
+        /* --- CINEMATIC INTRO (4 SECONDS) --- */
+        #intro-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1.5s ease;
+        }
+
+        .intro-text {
+            /* Applied the Montserrat font for a bold, modern look */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem; /* Large and bold */
+            /* Reduced letter-spacing to match the image's tight spacing */
+            letter-spacing: -1px; 
+            font-weight: 700; /* Use the boldest weight */
+            text-transform: uppercase;
+            opacity: 0;
+            /* 4-second animation: scale up and fade in/out */
+            animation: textReveal 4s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes textReveal {
+            0% { opacity: 0; transform: scale(0.85); filter: blur(10px); }
+            30% { opacity: 1; filter: blur(0px); }
+            70% { opacity: 1; transform: scale(1.05); filter: blur(0px); }
+            100% { opacity: 0; transform: scale(1.1); filter: blur(15px); }
+        }
+
+        /* --- MAIN PAGE CONTENT --- */
+        #main-content {
+            opacity: 0;
+            height: 100vh;
+            overflow-y: auto;
+            background: url('buug.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            transition: opacity 2s ease;
+        }
+
+        .glass-overlay {
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 50px;
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: #ccc; text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: white; text-shadow: 0 0 10px white; }
+
+        .hero-section {
+            text-align: center;
+            margin-top: 10vh;
+            max-width: 800px;
+        }
+
+        h1 { font-size: 4rem; letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
+        p { font-size: 1.2rem; color: #ddd; line-height: 1.6; }
+
+    </style>
+</head>
+<body>
+
+    <div id="intro-overlay">
+        <div class="intro-text">LOUIE'S CODE</div>
+    </div>
+
+    <div id="main-content">
+        <div class="glass-overlay">
+            <nav>
+                <div style="font-weight: bold; letter-spacing: 2px;">MUNICIPALITY OF BUUG</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="officials.html">Officials</a></li>
+                    <li><a href="tourism.html">Tourism</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="hero-section">
+                <h1>Welcome</h1>
+                <p>To the official digital gateway of the Municipality of Buug. Explore our rich culture, meet our leaders, and witness the natural beauty of our town.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            // Wait 4 seconds (4000ms) for the cinematic text to play through
+            setTimeout(() => {
+                const intro = document.getElementById('intro-overlay');
+                const content = document.getElementById('main-content');
+                
+                // Fade out intro, fade in site
+                intro.style.opacity = '0';
+                content.style.opacity = '1';
+                
+                // Enable scrolling
+                document.body.style.overflow = 'auto';
+
+                // Fully remove intro from view after it fades
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                }, 1500);
+            }, 4000); 
+        });
+    </script>
+</body>
+</html>
