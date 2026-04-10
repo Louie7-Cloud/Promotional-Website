@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Municipality of Buug - Officials</title>
+    <title>About - Municipality of Buug</title>
     <style>
-        /* General Styles to match the screenshot */
+        /* Consistent Theme */
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             color: white;
-            min-height: 100vh;
-            /* Gradient background similar to the image */
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
             background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden; /* Iwas sa horizontal scroll */
         }
 
         /* Navigation Bar - Responsive Update */
@@ -22,145 +22,125 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            flex-wrap: wrap; /* Allows menu to wrap if too long */
-            gap: 15px;
+            padding: 15px 5%; /* Flexible padding */
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .logo {
-            font-weight: bold;
-            letter-spacing: 1px;
-            font-size: 1.1rem;
-        }
+        .logo { font-weight: bold; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li a {
+        .nav-links { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
+        .nav-links li a {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
             transition: 0.3s;
         }
+        .nav-links li a:hover { color: #fff; text-shadow: 0 0 10px white; }
 
-        nav ul li a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
         }
+        .menu-toggle span { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-        /* Main Content Container */
-        .container {
+        /* About Section Layout */
+        .about-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
             text-align: center;
-            padding: 50px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
         }
 
         h1 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font size */
-            margin-bottom: 40px;
+            font-size: clamp(2rem, 8vw, 3rem); /* Dynamic font size */
+            letter-spacing: 3px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        /* Profile Cards Layout - Responsive Update */
-        .officials-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        /* Town Info Section */
+        .town-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
 
-        .priority-row {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap; /* Allows Mayor and Vice-Mayor to stack on mobile */
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .card {
+        /* Developer Card */
+        .dev-card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            padding: 20px;
-            /* Basis of 200px but allows growth so they don't look "crushed" */
-            flex: 1 1 200px; 
-            max-width: 250px;
-            transition: transform 0.3s ease;
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-sizing: border-box;
+            border-radius: 20px;
+            padding: clamp(25px, 6vw, 45px);
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .card img {
-            width: 120px;
-            height: 120px;
+        .dev-photo {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
             object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid rgba(255, 255, 255, 0.5);
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .card h3 {
-            font-size: 1.1rem;
-            margin: 10px 0 5px 0;
-        }
-
-        .card p {
-            font-size: 0.85rem;
-            color: #ddd;
-            font-style: italic;
-        }
-
-        .council-title {
-            width: 100%;
-            margin: 40px 0 20px 0;
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 10px;
-        }
-
-        /* Mobile specific adjustments */
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                padding: 20px;
-            }
-            nav ul {
-                gap: 10px;
-                font-size: 0.8rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .card {
-                max-width: 100%; /* Allows cards to take full width on very small screens */
-            }
-        }
+        .dev-card h2 { margin: 10px 0; font-size: clamp(1.4rem, 4vw, 1.8rem); }
+        .dev-card h4 { color: #4facfe; margin-bottom: 15px; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; }
+        .dev-card p { font-size: 1rem; color: #eee; line-height: 1.6; }
 
         footer {
-            text-align: center; 
-            padding: 30px; 
-            color: rgba(255,255,255,0.5); 
+            text-align: center;
+            padding: 40px 20px;
             font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* --- MOBILE RESPONSIVENESS (Media Queries) --- */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .menu-toggle { display: flex; } /* Labas ang hamburger menu */
+            
+            .nav-links {
+                display: none; /* Tago ang links */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: rgba(15, 30, 60, 0.98);
+                padding: 20px 0;
+                text-align: center;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active { display: flex; } /* Labas kapag pinindot toggle */
+            
+            .about-container { margin: 20px auto; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">MUNICIPALITY OF BUUG</div>
-        <ul>
+        <div class="logo">Municipality of Buug</div>
+        <div class="menu-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="officials.html">Officials</a></li>
             <li><a href="tourism.html">Tourism</a></li>
@@ -169,71 +149,40 @@
         </ul>
     </nav>
 
-    <div class="container">
-        <h1>Municipality of Buug Officials</h1>
+    <div class="about-container">
+        <h1>About the Project</h1>
 
-        <div class="priority-row">
-            <div class="card">
-                <img src="mayor.jpg" alt="Official Photo">
-                <h3>LAGAS DIONESIA</h3>
-                <p>Mayor</p>
-            </div>
-            <div class="card">
-                <img src="jonam.jpg" alt="Official Photo">
-                <h3>LAGAS JONAM</h3>
-                <p>Vice-Mayor</p>
-            </div>
+        <div class="town-info">
+            <p>The Municipality of Buug, located in the province of Zamboanga Sibugay, is a land of vibrant culture and immense natural beauty. This website serves as a digital window for locals and tourists alike to explore our history, meet our dedicated leaders, and discover the hidden gems of our town.</p>
         </div>
 
-        <h2 class="council-title">Municipal Councilors</h2>
-
-        <div class="officials-grid">
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>DIMASAGKA ABDULRHADS</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>CHUA WILLIAM</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>GAKO MARVIN JESSIE</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>QUINTERO SHERWIN</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>PADERANGA ALLEN</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>FAMOR KUKU</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>CERBO ROMEO</h3>
-                <p>Councilor</p>
-            </div>
-            <div class="card">
-                <img src="unknown.jpeg" alt="Official Photo">
-                <h3>CURIBA FREIDA</h3>
-                <p>Councilor</p>
-            </div>
+        <div class="dev-card">
+            <img src="dev.jpg" alt="Mark Louie O. Casing" class="dev-photo">
+            <h4>Lead Developer</h4>
+            <h2>Mark Louie O. Casing</h2>
+            <p>A highly motivated BSIT graduate from MSU Buug with a strong foundation in web development. Eager to leverage technical skills in front-end and back-end technologies to contribute to innovative digital solutions and grow within a fast-paced development team.</p>
         </div>
     </div>
-    
+
     <footer>
-        &copy; 2026 Municipality of Buug Officials. All Rights Reserved | Developed by Mark Louie O. Casing
+        &copy; 2026 Municipality of Buug. All Rights Reserved. | Developed by Mark Louie O. Casing
     </footer>
 
+    <script>
+        // Hamburger Menu Toggle Logic
+        const toggle = document.getElementById('mobile-toggle');
+        const navList = document.getElementById('nav-list');
+
+        toggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
