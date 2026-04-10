@@ -33,7 +33,7 @@
 
         .intro-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 10vw, 5rem); /* Responsive font size */
+            font-size: clamp(2rem, 10vw, 5rem);
             letter-spacing: -1px; 
             font-weight: 700;
             text-transform: uppercase;
@@ -62,52 +62,57 @@
             min-height: 100vh;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Responsive Nav */
+        /* --- STICKY NAV --- */
         nav {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 20px 8%;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: relative;
+            background: rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .nav-links { 
-            display: flex; 
-            list-style: none; 
-            gap: 30px; 
-        }
+        .logo { font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; }
 
+        .nav-links { display: flex; list-style: none; gap: 30px; transition: 0.4s ease; }
         .nav-links a { 
             color: #ccc; 
             text-decoration: none; 
-            transition: 0.3s; 
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s; 
         }
-        
-        .nav-links a:hover { color: white; text-shadow: 0 0 10px white; }
+        .nav-links a:hover { 
+            color: white; 
+            text-shadow: 0 0 10px white;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+        }
 
-        /* Menu Toggle Button (Hamburger) */
+        /* --- HAMBURGER MENU --- */
         .menu-toggle {
             display: none;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            z-index: 1001;
         }
 
         .menu-toggle span {
             width: 25px;
             height: 3px;
             background: white;
-            border-radius: 2px;
+            border-radius: 5px;
             transition: 0.3s;
         }
 
@@ -115,33 +120,32 @@
             text-align: center;
             margin-top: 15vh;
             max-width: 800px;
-            padding: 0 20px;
+            padding: 20px;
         }
 
-        h1 { font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
         p { font-size: clamp(1rem, 3vw, 1.2rem); color: #ddd; line-height: 1.6; }
 
-        /* --- MOBILE STYLES --- */
-        @media (max-width: 768px) {
+        /* --- MOBILE VIEW --- */
+        @media (max-width: 850px) {
+            nav { padding: 20px 5%; }
             .menu-toggle { display: flex; }
 
             .nav-links {
-                display: none; /* Hidden by default */
+                display: none;
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
                 background: rgba(0, 0, 0, 0.95);
-                padding: 20px 0;
+                padding: 40px 0;
                 text-align: center;
-                gap: 20px;
+                gap: 25px;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
-            .nav-links.active {
-                display: flex; /* Show when active */
-            }
+            .nav-links.active { display: flex; }
         }
     </style>
 </head>
@@ -154,7 +158,7 @@
     <div id="main-content">
         <div class="glass-overlay">
             <nav>
-                <div style="font-weight: bold; letter-spacing: 2px;">MUNICIPALITY OF BUUG</div>
+                <div class="logo">Municipality of Buug</div>
                 
                 <div class="menu-toggle" id="mobile-toggle">
                     <span></span>
@@ -179,28 +183,38 @@
     </div>
 
     <script>
-        // Intro handling
+        // Intro Animation Logic
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const intro = document.getElementById('intro-overlay');
                 const content = document.getElementById('main-content');
-                
                 intro.style.opacity = '0';
                 content.style.opacity = '1';
                 document.body.style.overflow = 'auto';
-
-                setTimeout(() => {
-                    intro.style.display = 'none';
-                }, 1500);
+                setTimeout(() => { intro.style.display = 'none'; }, 1500);
             }, 4000); 
         });
 
-        // TOGGLE LOGIC
-        const toggle = document.getElementById('mobile-toggle');
+        // TOGGLE MENU LOGIC
+        const mobileToggle = document.getElementById('mobile-toggle');
         const navList = document.getElementById('nav-list');
 
-        toggle.addEventListener('click', () => {
-            navList.classList.toggle('active'); // Ito yung magpapakita/magtatago ng menu
+        mobileToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            
+            // Optional: Animation para sa Hamburger icon (magiging X)
+            const spans = mobileToggle.querySelectorAll('span');
+            mobileToggle.classList.toggle('open');
+            
+            if(mobileToggle.classList.contains('open')) {
+                spans[0].style.transform = "rotate(45deg) translate(5px, 6px)";
+                spans[1].style.opacity = "0";
+                spans[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
+            } else {
+                spans[0].style.transform = "none";
+                spans[1].style.opacity = "1";
+                spans[2].style.transform = "none";
+            }
         });
     </script>
 </body>
