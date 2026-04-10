@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tourism - Municipality of Buug</title>
     <style>
-        /* Base Theme from Screenshot 1 */
+        /* Base Theme */
         body, html {
             margin: 0;
             padding: 0;
@@ -14,6 +14,7 @@
             line-height: 1.6;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #6a11cb 100%);
             background-attachment: fixed;
+            overflow-x: hidden;
         }
 
         /* Navigation Bar */
@@ -21,52 +22,63 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
-            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .logo { font-weight: bold; letter-spacing: 1px; }
+        .logo { font-weight: bold; letter-spacing: 1px; font-size: 1.1rem; }
 
-        nav ul { display: flex; list-style: none; gap: 25px; margin: 0; }
-
-        nav ul li a {
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; }
+        .nav-links li a {
             text-decoration: none;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
+        .nav-links li a:hover { color: #fff; text-shadow: 0 0 10px white; }
 
-        /* News Section (Article at Top) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-toggle span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* News Section */
         .news-container {
             max-width: 1000px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 30px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border-radius: 15px;
             font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .quote {
             font-style: italic;
             border-left: 4px solid #fff;
             padding-left: 20px;
-            margin: 20px 0;
+            margin: 25px 0;
             color: #ddd;
         }
 
         .main-title {
             text-align: center;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             margin: 60px 0;
             text-transform: uppercase;
             letter-spacing: 5px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* Tourist Spot Layout (Like Screenshot 2) */
+        /* Tourist Spot Layout */
         .content-wrapper {
             max-width: 1100px;
             margin: 0 auto;
@@ -74,44 +86,72 @@
         }
 
         .spot-section {
-            display: block;
-            margin-bottom: 80px;
-            overflow: hidden; /* Clears the float */
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 100px;
         }
+
+        /* Alternate image side */
+        .spot-section:nth-child(even) { flex-direction: row-reverse; }
 
         .spot-image {
-            float: right; /* Text wraps around image */
-            width: 45%;
-            margin-left: 30px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
-        /* Alternate image side for every second spot */
-        .spot-section:nth-child(even) .spot-image {
-            float: left;
-            margin-left: 0;
-            margin-right: 30px;
-        }
+        .spot-text { flex: 1; }
 
         h2 {
             font-size: 2rem;
             color: #fff;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
+            border-bottom: 3px solid #4facfe;
             display: inline-block;
             margin-bottom: 20px;
         }
 
-        .spot-text b {
-            color: #4facfe;
-        }
+        .spot-text p { margin-bottom: 15px; text-align: justify; }
+        .spot-text b { color: #4facfe; }
 
         footer {
             text-align: center;
-            padding: 50px;
-            background: rgba(0,0,0,0.3);
-            font-size: 0.8rem;
+            padding: 50px 20px;
+            background: rgba(0,0,0,0.4);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 850px) {
+            .menu-toggle { display: flex; }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: rgba(20, 40, 80, 0.98);
+                padding: 30px 0;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+
+            .spot-section, .spot-section:nth-child(even) {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .spot-image {
+                width: 100%;
+                min-width: unset;
+                max-width: 100%;
+            }
+
+            .spot-text p { text-align: center; }
         }
     </style>
 </head>
@@ -119,7 +159,10 @@
 
     <nav>
         <div class="logo">MUNICIPALITY OF BUUG</div>
-        <ul>
+        <div class="menu-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="officials.html">Officials</a></li>
             <li><a href="tourism.html">Tourism</a></li>
@@ -160,7 +203,7 @@
             <img src="mamas.jpg" alt="Dos Mamas" class="spot-image">
             <div class="spot-text">
                 <h2>DOS MAMAS MOUNTAIN</h2>
-                <p>Dos Mamas Mountain is one of the most iconic natural landmarks in Buug, Zamboanga Sibugay. It is famous for its twin peaks, which resemble two "mamas" (breasts), giving it its unique name.</p>
+                <p>Dos Mamas Mountain is one of the most iconic natural landmarks in Buug, Zamboanga Sibugay. It is famous for its twin peaks, which resemble dalawang "mamas" (breasts), giving it its unique name.</p>
                 <p><b>The Beauty of Dos Mamas Mountain:</b> Dos Mamas is a favorite for hikers and nature lovers who want a bit more adventure. It offers a raw, untouched beauty that showcases the rugged side of Zamboanga Sibugay.</p>
                 <p><b>The Twin Peaks Challenge:</b> The mountain is known for its distinct silhouette. Reaching the summit gives hikers a massive sense of accomplishment and a unique vantage point of the surrounding municipalities.</p>
                 <p><b>Breathtaking 360-Degree Views:</b> Once you reach the top, you are rewarded with an overlooking view of the lush valleys of Buug and the distant coastline of Sibugay Bay. On a clear day, the horizon seems endless.</p>
@@ -201,5 +244,14 @@
         &copy; 2026 Municipality of Buug. All Rights Reserved | Developed by Mark Louie O. Casing
     </footer>
 
+    <script>
+        // Toggle mobile menu
+        const toggle = document.getElementById('mobile-toggle');
+        const nav = document.getElementById('nav-list');
+
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
