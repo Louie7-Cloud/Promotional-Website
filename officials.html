@@ -17,12 +17,14 @@
             background-attachment: fixed;
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar - Responsive Update */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
+            flex-wrap: wrap; /* Allows menu to wrap if too long */
+            gap: 15px;
         }
 
         .logo {
@@ -35,6 +37,8 @@
             display: flex;
             list-style: none;
             gap: 25px;
+            padding: 0;
+            margin: 0;
         }
 
         nav ul li a {
@@ -58,25 +62,26 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font size */
             margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* Profile Cards Layout */
+        /* Profile Cards Layout - Responsive Update */
         .officials-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
         }
 
         .priority-row {
             width: 100%;
             display: flex;
+            flex-wrap: wrap; /* Allows Mayor and Vice-Mayor to stack on mobile */
             justify-content: center;
-            gap: 40px;
+            gap: 20px;
             margin-bottom: 50px;
         }
 
@@ -85,9 +90,12 @@
             backdrop-filter: blur(5px);
             border-radius: 15px;
             padding: 20px;
-            width: 200px;
+            /* Basis of 200px but allows growth so they don't look "crushed" */
+            flex: 1 1 200px; 
+            max-width: 250px;
             transition: transform 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-sizing: border-box;
         }
 
         .card:hover {
@@ -118,9 +126,33 @@
         .council-title {
             width: 100%;
             margin: 40px 0 20px 0;
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             border-bottom: 1px solid rgba(255,255,255,0.3);
             padding-bottom: 10px;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                padding: 20px;
+            }
+            nav ul {
+                gap: 10px;
+                font-size: 0.8rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .card {
+                max-width: 100%; /* Allows cards to take full width on very small screens */
+            }
+        }
+
+        footer {
+            text-align: center; 
+            padding: 30px; 
+            color: rgba(255,255,255,0.5); 
+            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -198,10 +230,10 @@
             </div>
         </div>
     </div>
-	
-	<footer style="text-align: center; padding: 30px; color: rgba(255,255,255,0.5); font-size: 0.8rem;">
-    &copy; 2026 Municipality of Buug Officials. All Rights Reserved | Developed by Mark Louie O. Casing
-</footer>
+    
+    <footer>
+        &copy; 2026 Municipality of Buug Officials. All Rights Reserved | Developed by Mark Louie O. Casing
+    </footer>
 
 </body>
 </html>
