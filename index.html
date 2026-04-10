@@ -16,10 +16,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Main page font remains clean sans-serif */
         body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); color: white; overflow: hidden; }
 
-        /* --- CINEMATIC INTRO (4 SECONDS) --- */
+        /* --- CINEMATIC INTRO --- */
         #intro-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -33,15 +32,12 @@
         }
 
         .intro-text {
-            /* Applied the Montserrat font for a bold, modern look */
             font-family: 'Montserrat', sans-serif;
-            font-size: 5rem; /* Large and bold */
-            /* Reduced letter-spacing to match the image's tight spacing */
+            font-size: clamp(2rem, 10vw, 5rem); /* Responsive font size */
             letter-spacing: -1px; 
-            font-weight: 700; /* Use the boldest weight */
+            font-weight: 700;
             text-transform: uppercase;
             opacity: 0;
-            /* 4-second animation: scale up and fade in/out */
             animation: textReveal 4s forwards cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -66,34 +62,87 @@
             min-height: 100vh;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            padding: 40px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        /* Responsive Nav */
         nav {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 20px 60px;
+            align-items: center;
+            padding: 20px 5%;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 50px;
+            position: relative;
         }
 
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { color: #ccc; text-decoration: none; transition: 0.3s; }
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 30px; 
+        }
+
+        .nav-links a { 
+            color: #ccc; 
+            text-decoration: none; 
+            transition: 0.3s; 
+            font-size: 0.9rem;
+        }
+        
         .nav-links a:hover { color: white; text-shadow: 0 0 10px white; }
+
+        /* Menu Toggle Button (Hamburger) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
 
         .hero-section {
             text-align: center;
-            margin-top: 10vh;
+            margin-top: 15vh;
             max-width: 800px;
+            padding: 0 20px;
         }
 
-        h1 { font-size: 4rem; letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
-        p { font-size: 1.2rem; color: #ddd; line-height: 1.6; }
+        h1 { font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 5px; margin-bottom: 20px; text-transform: uppercase; }
+        p { font-size: clamp(1rem, 3vw, 1.2rem); color: #ddd; line-height: 1.6; }
 
+        /* --- MOBILE STYLES --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            .nav-links {
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 20px 0;
+                text-align: center;
+                gap: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                display: flex; /* Show when active */
+            }
+        }
     </style>
 </head>
 <body>
@@ -106,7 +155,14 @@
         <div class="glass-overlay">
             <nav>
                 <div style="font-weight: bold; letter-spacing: 2px;">MUNICIPALITY OF BUUG</div>
-                <ul class="nav-links">
+                
+                <div class="menu-toggle" id="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <ul class="nav-links" id="nav-list">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="officials.html">Officials</a></li>
                     <li><a href="tourism.html">Tourism</a></li>
@@ -123,24 +179,28 @@
     </div>
 
     <script>
+        // Intro handling
         window.addEventListener('load', () => {
-            // Wait 4 seconds (4000ms) for the cinematic text to play through
             setTimeout(() => {
                 const intro = document.getElementById('intro-overlay');
                 const content = document.getElementById('main-content');
                 
-                // Fade out intro, fade in site
                 intro.style.opacity = '0';
                 content.style.opacity = '1';
-                
-                // Enable scrolling
                 document.body.style.overflow = 'auto';
 
-                // Fully remove intro from view after it fades
                 setTimeout(() => {
                     intro.style.display = 'none';
                 }, 1500);
             }, 4000); 
+        });
+
+        // TOGGLE LOGIC
+        const toggle = document.getElementById('mobile-toggle');
+        const navList = document.getElementById('nav-list');
+
+        toggle.addEventListener('click', () => {
+            navList.classList.toggle('active'); // Ito yung magpapakita/magtatago ng menu
         });
     </script>
 </body>
